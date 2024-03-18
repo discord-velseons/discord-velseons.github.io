@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>簡易チャットツール</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+  #chat { list-style: none; margin: 0; padding: 0; }
+  #chat li { padding: 8px; border-bottom: 1px solid #ccc; }
+  #inputArea { position: fixed; bottom: 0; width: 100%; background: #f2f2f2; padding: 10px; box-sizing: border-box; }
+  #message { width: calc(100% - 110px); }
+  #send { width: 100px; }
+</style>
+</head>
+<body>
+<ul id="chat"></ul>
+<div id="inputArea">
+  <input type="text" id="message" placeholder="メッセージを入力">
+  <button id="send">送信</button>
+</div>
+<script>
+  // チャット履歴をローカルストレージから読み込み
+  let chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
+
+  function displayChat() {
+    const chatElement = document.getElementById('chat');
+    chatElement.innerHTML = ''; // チャットエリアをクリア
+    chatHistory.forEach(function(message) {
+      const messageElement = document.createElement('li');
+      messageElement.textContent = message;
+      chatElement.appendChild(messageElement);
+    });
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+
+  function sendMessage() {
+    const messageInput = document.getElementById('message');
+    const message = messageInput.value;
+    if (message.trim() !== '') {
+      chatHistory.push(message); // メッセージを履歴に追加
+      localStorage.setItem('chatHistory', JSON.stringify(chatHistory)); // ローカルストレージを更新
+      displayChat();
+      messageInput.value = ''; // 入力フィールドをクリア
+    }
+  }
+
+  document.getElementById('send').addEventListener('click', sendMessage);
+  document.getElementById('message').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      sendMessage();
+    }
+  });
+
+  // 初期表示
+  displayChat();
+</script>
+</body>
+</html>
