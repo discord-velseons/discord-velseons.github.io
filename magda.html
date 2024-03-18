@@ -2,57 +2,66 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>簡易チャットツール</title>
+<title>Mini r/place</title>
 <style>
-  body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-  #chat { list-style: none; margin: 0; padding: 0; }
-  #chat li { padding: 8px; border-bottom: 1px solid #ccc; }
-  #inputArea { position: fixed; bottom: 0; width: 100%; background: #f2f2f2; padding: 10px; box-sizing: border-box; }
-  #message { width: calc(100% - 110px); }
-  #send { width: 100px; }
+  #canvas { width: 320px; height: 320px; display: grid; grid-template-columns: repeat(16, 1fr); }
+  .pixel { width: 20px; height: 20px; border: 1px solid #ddd; }
+  .color-button { width: 40px; height: 40px; margin: 5px; }
+  #controls { margin-bottom: 20px; }
 </style>
 </head>
 <body>
-<ul id="chat"></ul>
-<div id="inputArea">
-  <input type="text" id="message" placeholder="メッセージを入力">
-  <button id="send">送信</button>
-</div>
-<script>
-  // チャット履歴をローカルストレージから読み込み
-  let chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
 
-  function displayChat() {
-    const chatElement = document.getElementById('chat');
-    chatElement.innerHTML = ''; // チャットエリアをクリア
-    chatHistory.forEach(function(message) {
-      const messageElement = document.createElement('li');
-      messageElement.textContent = message;
-      chatElement.appendChild(messageElement);
-    });
-    window.scrollTo(0, document.body.scrollHeight);
+<div id="controls">
+  <button class="color-button" style="background-color: red;" data-color="red"></button>
+  <button class="color-button" style="background-color: black;" data-color="black"></button>
+  <button class="color-button" style="background-color: yellow;" data-color="yellow"></button>
+  <button class="color-button" style="background-color: blue;" data-color="blue"></button>
+  <button class="color-button" style="background-color: cyan;" data-color="cyan"></button>
+  <button class="color-button" style="background-color: white;" data-color="white"></button>
+</div>
+
+<div id="canvas"></div>
+
+<script>
+  const canvas = document.getElementById('canvas');
+  const controls = document.getElementById('controls');
+  let currentColor = 'black';
+
+  function saveCanvas() {
+    const pixels = [...canvas.children].map(pixel => pixel.style.backgroundColor);
+    localStorage.setItem('miniPlaceCanvas', JSON.stringify(pixels));
   }
 
-  function sendMessage() {
-    const messageInput = document.getElementById('message');
-    const message = messageInput.value;
-    if (message.trim() !== '') {
-      chatHistory.push(message); // メッセージを履歴に追加
-      localStorage.setItem('chatHistory', JSON.stringify(chatHistory)); // ローカルストレージを更新
-      displayChat();
-      messageInput.value = ''; // 入力フィールドをクリア
+  function loadCanvas() {
+    const savedPixels = JSON.parse(localStorage.getItem('miniPlaceCanvas'));
+    if (savedPixels) {
+      savedPixels.forEach((color, index) => {
+        canvas.children[index].style.backgroundColor = color;
+      });
     }
   }
 
-  document.getElementById('send').addEventListener('click', sendMessage);
-  document.getElementById('message').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-      sendMessage();
+  function createCanvas() {
+    for (let i = 0; i < 16 * 16; i++) {
+      const pixel = document.createElement('div');
+      pixel.className = 'pixel';
+      pixel.addEventListener('click', () => {
+        pixel.style.backgroundColor = currentColor;
+        saveCanvas();
+      });
+      canvas.appendChild(pixel);
+    }
+  }
+
+  controls.addEventListener('click', (e) => {
+    if (e.target.className.includes('color-button')) {
+      currentColor = e.target.dataset.color;
     }
   });
 
-  // 初期表示
-  displayChat();
+  createCanvas();
+  loadCanvas();
 </script>
 </body>
 </html>
